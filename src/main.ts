@@ -23,7 +23,7 @@ function setScore(num: number) {
 }
 let counterGrowthRate = 1;
 const button = document.createElement("button");
-button.innerHTML = `<img src="img/cat.jfif">`;
+button.innerHTML = `<img src="./img/cat.jfif">`;
 app.append(button);
 
 const cats = document.createElement("div");
