@@ -16,10 +16,10 @@ subHeader.innerHTML = gameSubtitle;
 app.append(subHeader);
 
 let counter: number = 0;
-function setScore(num: number){
-    counter = num;
-    hideShowUpgradeButton();
-    cats.innerHTML = counter.toFixed(4) + " cats";
+function setScore(num: number) {
+  counter = num;
+  hideShowUpgradeButton();
+  cats.innerHTML = counter.toFixed(4) + " cats";
 }
 let counterGrowthRate = 1;
 const button = document.createElement("button");
@@ -30,7 +30,7 @@ const cats = document.createElement("div");
 app.append(cats);
 
 function incrementScore() {
-    setScore(counter + 1);
+  setScore(counter + 1);
 }
 button.onclick = incrementScore;
 
@@ -45,21 +45,19 @@ function incrementScoreOverTime(time: number) {
 requestAnimationFrame(incrementScoreOverTime);
 
 const upgradeButton = document.createElement("button");
-upgradeButton.innerHTML = "Upgrade (cost 10)"
+upgradeButton.innerHTML = "Upgrade (cost 10)";
 app.append(upgradeButton);
 
-function hideShowUpgradeButton(){
-    if(counter >= 10){
-        upgradeButton.style.display = 'inline-block';
-    }
-    else{
-        upgradeButton.style.display = 'none';
-    }
+function hideShowUpgradeButton() {
+  if (counter >= 10) {
+    upgradeButton.style.display = "inline-block";
+  } else {
+    upgradeButton.style.display = "none";
+  }
 }
 
-
 function incrementGrowthRate() {
-    counterGrowthRate++;
-    setScore(counter - 10);
-  }
+  counterGrowthRate++;
+  setScore(counter - 10);
+}
 upgradeButton.onclick = incrementGrowthRate;
