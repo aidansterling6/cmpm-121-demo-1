@@ -24,8 +24,8 @@ const cats = document.createElement("div");
 cats.innerHTML = counter + " cats";
 app.append(cats);
 
-function incrementScore(){
-    counter++;
-    cats.innerHTML = counter + " cats";
+function incrementScore() {
+  counter++;
+  cats.innerHTML = counter + " cats";
 }
 button.onclick = incrementScore;
