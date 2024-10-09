@@ -60,4 +60,5 @@ function incrementGrowthRate() {
   counterGrowthRate++;
   setScore(counter - 10);
 }
+
 upgradeButton.onclick = incrementGrowthRate;
