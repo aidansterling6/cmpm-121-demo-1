@@ -54,7 +54,7 @@ class Game {
   incrementScoreOverTime = (time: number) => {
     if (this.lastTime !== undefined) {
       this.setScore(
-        this.score + (time - this.lastTime) * (this.counterGrowthRate / 1000.0)
+        this.score + (time - this.lastTime) * (this.counterGrowthRate / 1000.0),
       );
     }
     this.lastTime = time;
