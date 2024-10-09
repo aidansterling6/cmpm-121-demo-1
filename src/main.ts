@@ -29,4 +29,13 @@ function incrementScore() {
   cats.innerHTML = counter + " cats";
 }
 button.onclick = incrementScore;
-setInterval(incrementScore, 1000.0);
+let lastTime: number | undefined;
+function incrementScoreOverTime(time: number) {
+    if(lastTime !== undefined){
+        counter += (time - lastTime) * (1.0/1000.0);
+    }
+    cats.innerHTML = counter.toFixed(4) + " cats";
+    lastTime = time;
+    requestAnimationFrame(incrementScoreOverTime);
+  }
+requestAnimationFrame(incrementScoreOverTime);
