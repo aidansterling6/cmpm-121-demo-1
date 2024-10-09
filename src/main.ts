@@ -31,11 +31,11 @@ function incrementScore() {
 button.onclick = incrementScore;
 let lastTime: number | undefined;
 function incrementScoreOverTime(time: number) {
-    if(lastTime !== undefined){
-        counter += (time - lastTime) * (1.0/1000.0);
-    }
-    cats.innerHTML = counter.toFixed(4) + " cats";
-    lastTime = time;
-    requestAnimationFrame(incrementScoreOverTime);
+  if (lastTime !== undefined) {
+    counter += (time - lastTime) * (1.0 / 1000.0);
   }
+  cats.innerHTML = counter.toFixed(4) + " cats";
+  lastTime = time;
+  requestAnimationFrame(incrementScoreOverTime);
+}
 requestAnimationFrame(incrementScoreOverTime);
