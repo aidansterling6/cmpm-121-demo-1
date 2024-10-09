@@ -29,3 +29,4 @@ function incrementScore() {
   cats.innerHTML = counter + " cats";
 }
 button.onclick = incrementScore;
+setInterval(incrementScore, 1000.0);
