@@ -10,10 +10,25 @@ interface Item {
 }
 const availableItems: Item[] = [
   { name: "Milk", desc: "Cats like milk (kinda)", cost: 10, rate: 0.1 },
-  { name: "Newspaper", desc: "Attract cats by giving them newspaper to shred", cost: 100, rate: 2 },
-  { name: "Cardboard box", desc: "Provides houses for your cats", cost: 1000, rate: 50 },
+  {
+    name: "Newspaper",
+    desc: "Attract cats by giving them newspaper to shred",
+    cost: 100,
+    rate: 2,
+  },
+  {
+    name: "Cardboard box",
+    desc: "Provides houses for your cats",
+    cost: 1000,
+    rate: 50,
+  },
   { name: "Catnip", desc: "Give the cats drugs", cost: 10000, rate: 500 },
-  { name: "Catnip factory", desc: "All cats nearby will want some", cost: 100000, rate: 50000 },
+  {
+    name: "Catnip factory",
+    desc: "All cats nearby will want some",
+    cost: 100000,
+    rate: 50000,
+  },
 ];
 
 class Element {
@@ -31,7 +46,13 @@ class Upgrade {
   desc;
   game;
   upgradeButton;
-  constructor(cost: number, bonus: number, text: string, desc: string, game: Game) {
+  constructor(
+    cost: number,
+    bonus: number,
+    text: string,
+    desc: string,
+    game: Game,
+  ) {
     this.cost = cost;
     this.bonus = bonus;
     this.text = text;
@@ -60,9 +81,10 @@ class Upgrade {
         ")";
     };
     document.onmousemove = (event) => {
-      this.game.description.element.style.left = (event.pageX + 15) + "px";
-      this.game.description.element.style.bottom = (Number(window.innerHeight)-event.pageY - 13) + "px";
-    }
+      this.game.description.element.style.left = event.pageX + 15 + "px";
+      this.game.description.element.style.bottom =
+        Number(window.innerHeight) - event.pageY - 13 + "px";
+    };
     this.upgradeButton.element.onmouseover = () => {
       this.game.description.element.style.display = "inline-block";
       this.game.description.element.innerHTML = this.desc;
@@ -111,7 +133,7 @@ class Game {
     this.cats = new Element("div");
     this.catGrowth = new Element("div");
     this.catGrowth.element.innerHTML =
-    this.counterGrowthRate.toFixed(1) + " cats/sec";
+      this.counterGrowthRate.toFixed(1) + " cats/sec";
 
     //this.upgradeButton = new Element("button");
     //this.upgradeButton.element.innerHTML = "Upgrade (cost 10)";
