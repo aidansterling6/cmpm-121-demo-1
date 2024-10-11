@@ -3,16 +3,15 @@ import "./style.css";
 const app: HTMLDivElement = document.querySelector("#app")!;
 
 interface Item {
-  name: string,
-  cost: number,
-  rate: number
-};
-const availableItems : Item[] = [
-  {name: "Milk", cost: 10, rate: 0.1},
-  {name: "Cardboard box", cost: 100, rate: 2},
-  {name: "Catnip", cost: 1000, rate: 50},
+  name: string;
+  cost: number;
+  rate: number;
+}
+const availableItems: Item[] = [
+  { name: "Milk", cost: 10, rate: 0.1 },
+  { name: "Cardboard box", cost: 100, rate: 2 },
+  { name: "Catnip", cost: 1000, rate: 50 },
 ];
-
 
 class Element {
   element;
@@ -101,8 +100,10 @@ class Game {
     //this.upgradeButton.element.innerHTML = "Upgrade (cost 10)";
     //this.upgradeButton.element.onclick = this.incrementGrowthRate;
     //requestAnimationFrame(this.incrementScoreOverTime);
-    for(const Item of availableItems){
-      this.upgradeButtons.push(new Upgrade(Item.cost, Item.rate, Item.name, this));
+    for (const Item of availableItems) {
+      this.upgradeButtons.push(
+        new Upgrade(Item.cost, Item.rate, Item.name, this),
+      );
     }
     //this.upgradeButtons.push(new Upgrade(10, 0.1, "Milk", this));
     //this.upgradeButtons.push(new Upgrade(100, 2, "Cardboard box", this));
