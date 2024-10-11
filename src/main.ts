@@ -20,11 +20,13 @@ class Upgrade {
     this.bonus = bonus;
     this.game = game;
     this.upgradeButton = new Element("button");
-    this.upgradeButton.element.innerHTML = "Upgrade (cost: " + this.cost + ", bonus: " + this.bonus + ")";
+    this.upgradeButton.element.innerHTML =
+      "Upgrade (cost: " + this.cost + ", bonus: " + this.bonus + ")";
     this.upgradeButton.element.onclick = () => {
       this.game.counterGrowthRate += this.bonus;
       this.game.setScore(this.game.score - this.cost);
-      this.game.catGrowth.element.innerHTML = this.game.counterGrowthRate.toFixed(1) + " cats/sec";
+      this.game.catGrowth.element.innerHTML =
+        this.game.counterGrowthRate.toFixed(1) + " cats/sec";
     };
   }
   updatevisability() {
@@ -65,7 +67,8 @@ class Game {
 
     this.cats = new Element("div");
     this.catGrowth = new Element("div");
-    this.catGrowth.element.innerHTML = this.counterGrowthRate.toFixed(1) + " cats/sec";
+    this.catGrowth.element.innerHTML =
+      this.counterGrowthRate.toFixed(1) + " cats/sec";
 
     //this.upgradeButton = new Element("button");
     //this.upgradeButton.element.innerHTML = "Upgrade (cost 10)";
