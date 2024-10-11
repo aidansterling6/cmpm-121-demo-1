@@ -23,7 +23,8 @@ class Upgrade {
     this.game = game;
     this.upgradeButton = new Element("button");
     this.upgradeButton.element.innerHTML =
-      this.text + " (cost: " +
+      this.text +
+      " (cost: " +
       this.cost.toFixed(2) +
       ", bonus: " +
       this.bonus.toFixed(2) +
@@ -35,7 +36,8 @@ class Upgrade {
         this.game.counterGrowthRate.toFixed(1) + " cats/sec";
       this.cost *= 1.15;
       this.upgradeButton.element.innerHTML =
-        this.text + " (cost: " +
+        this.text +
+        " (cost: " +
         this.cost.toFixed(2) +
         ", bonus: " +
         this.bonus.toFixed(2) +
