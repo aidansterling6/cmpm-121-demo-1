@@ -21,15 +21,23 @@ class Upgrade {
     this.game = game;
     this.upgradeButton = new Element("button");
     this.upgradeButton.element.innerHTML =
-      "Upgrade (cost: " + this.cost.toFixed(2) + ", bonus: " + this.bonus.toFixed(2) + ")";
+      "Upgrade (cost: " +
+      this.cost.toFixed(2) +
+      ", bonus: " +
+      this.bonus.toFixed(2) +
+      ")";
     this.upgradeButton.element.onclick = () => {
       this.game.counterGrowthRate += this.bonus;
       this.game.setScore(this.game.score - this.cost);
       this.game.catGrowth.element.innerHTML =
-      this.game.counterGrowthRate.toFixed(1) + " cats/sec";
+        this.game.counterGrowthRate.toFixed(1) + " cats/sec";
       this.cost *= 1.15;
       this.upgradeButton.element.innerHTML =
-      "Upgrade (cost: " + this.cost.toFixed(2) + ", bonus: " + this.bonus.toFixed(2) + ")";
+        "Upgrade (cost: " +
+        this.cost.toFixed(2) +
+        ", bonus: " +
+        this.bonus.toFixed(2) +
+        ")";
     };
   }
   updatevisability() {
