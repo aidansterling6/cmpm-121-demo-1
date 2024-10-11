@@ -13,15 +13,17 @@ class Element {
 class Upgrade {
   cost;
   bonus;
+  text;
   game;
   upgradeButton;
-  constructor(cost: number, bonus: number, game: Game) {
+  constructor(cost: number, bonus: number, text: string, game: Game) {
     this.cost = cost;
     this.bonus = bonus;
+    this.text = text;
     this.game = game;
     this.upgradeButton = new Element("button");
     this.upgradeButton.element.innerHTML =
-      "Upgrade (cost: " +
+      this.text + " (cost: " +
       this.cost.toFixed(2) +
       ", bonus: " +
       this.bonus.toFixed(2) +
@@ -33,7 +35,7 @@ class Upgrade {
         this.game.counterGrowthRate.toFixed(1) + " cats/sec";
       this.cost *= 1.15;
       this.upgradeButton.element.innerHTML =
-        "Upgrade (cost: " +
+        this.text + " (cost: " +
         this.cost.toFixed(2) +
         ", bonus: " +
         this.bonus.toFixed(2) +
@@ -85,9 +87,9 @@ class Game {
     //this.upgradeButton.element.innerHTML = "Upgrade (cost 10)";
     //this.upgradeButton.element.onclick = this.incrementGrowthRate;
     //requestAnimationFrame(this.incrementScoreOverTime);
-    this.upgradeButtons.push(new Upgrade(10, 0.1, this));
-    this.upgradeButtons.push(new Upgrade(100, 2, this));
-    this.upgradeButtons.push(new Upgrade(1000, 50, this));
+    this.upgradeButtons.push(new Upgrade(10, 0.1, "Milk", this));
+    this.upgradeButtons.push(new Upgrade(100, 2, "Cardboard box", this));
+    this.upgradeButtons.push(new Upgrade(1000, 50, "Catnip", this));
     requestAnimationFrame(this.incrementScoreOverTime);
   }
   setScore = (num: number) => {
