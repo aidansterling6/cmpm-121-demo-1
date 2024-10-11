@@ -10,6 +10,32 @@ class Element {
   }
 }
 
+class Upgrade {
+  cost;
+  bonus;
+  game;
+  upgradeButton;
+  constructor(cost: number, bonus: number, game: Game) {
+    this.cost = cost;
+    this.bonus = bonus;
+    this.game = game;
+    this.upgradeButton = new Element("button");
+    this.upgradeButton.element.innerHTML = "Upgrade (cost: " + this.cost + ", bonus: " + this.bonus + ")";
+    this.upgradeButton.element.onclick = () => {
+      this.game.counterGrowthRate += this.bonus;
+      this.game.setScore(this.game.score - this.cost);
+      this.game.catGrowth.element.innerHTML = this.game.counterGrowthRate.toFixed(1) + " cats/sec";
+    };
+  }
+  updatevisability() {
+    if (this.game.score >= this.cost) {
+      this.upgradeButton.element.style.display = "inline-block";
+    } else {
+      this.upgradeButton.element.style.display = "none";
+    }
+  }
+}
+
 class Game {
   name: string = "My amazing game";
   subtitle: string = "by Aidan";
@@ -21,7 +47,8 @@ class Game {
   subHeader;
   catButton;
   cats;
-  upgradeButton;
+  catGrowth;
+  upgradeButtons: Upgrade[] = [];
 
   constructor() {
     document.title = this.name;
@@ -37,10 +64,16 @@ class Game {
     this.catButton.element.onclick = this.incrementScore;
 
     this.cats = new Element("div");
+    this.catGrowth = new Element("div");
+    this.catGrowth.element.innerHTML = this.counterGrowthRate.toFixed(1) + " cats/sec";
 
-    this.upgradeButton = new Element("button");
-    this.upgradeButton.element.innerHTML = "Upgrade (cost 10)";
-    this.upgradeButton.element.onclick = this.incrementGrowthRate;
+    //this.upgradeButton = new Element("button");
+    //this.upgradeButton.element.innerHTML = "Upgrade (cost 10)";
+    //this.upgradeButton.element.onclick = this.incrementGrowthRate;
+    //requestAnimationFrame(this.incrementScoreOverTime);
+    this.upgradeButtons.push(new Upgrade(10, 0.1, this));
+    this.upgradeButtons.push(new Upgrade(100, 2, this));
+    this.upgradeButtons.push(new Upgrade(1000, 50, this));
     requestAnimationFrame(this.incrementScoreOverTime);
   }
   setScore = (num: number) => {
@@ -61,16 +94,19 @@ class Game {
     requestAnimationFrame(this.incrementScoreOverTime);
   };
   hideShowUpgradeButton = () => {
-    if (this.score >= 10) {
-      this.upgradeButton.element.style.display = "inline-block";
-    } else {
-      this.upgradeButton.element.style.display = "none";
+    for (const upgradeButton of this.upgradeButtons) {
+      upgradeButton.updatevisability();
     }
+    // if (this.score >= 10) {
+    //   this.upgradeButton.element.style.display = "inline-block";
+    // } else {
+    //   this.upgradeButton.element.style.display = "none";
+    // }
   };
-  incrementGrowthRate = () => {
-    this.counterGrowthRate++;
-    this.setScore(this.score - 10);
-  };
+  // incrementGrowthRate = (num: number) => {
+  //   this.counterGrowthRate += num;
+  //   this.setScore(this.score - 10);
+  // };
 }
 
 new Game();
