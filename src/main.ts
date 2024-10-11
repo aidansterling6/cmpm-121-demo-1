@@ -4,13 +4,16 @@ const app: HTMLDivElement = document.querySelector("#app")!;
 
 interface Item {
   name: string;
+  desc: string;
   cost: number;
   rate: number;
 }
 const availableItems: Item[] = [
-  { name: "Milk", cost: 10, rate: 0.1 },
-  { name: "Cardboard box", cost: 100, rate: 2 },
-  { name: "Catnip", cost: 1000, rate: 50 },
+  { name: "Milk", desc: "Cats like milk (kinda)", cost: 10, rate: 0.1 },
+  { name: "Newspaper", desc: "Attract cats by giving them newspaper to shred", cost: 100, rate: 2 },
+  { name: "Cardboard box", desc: "Provides houses for your cats", cost: 1000, rate: 50 },
+  { name: "Catnip", desc: "Give the cats drugs", cost: 10000, rate: 500 },
+  { name: "Catnip factory", desc: "All cats nearby will want some", cost: 100000, rate: 50000 },
 ];
 
 class Element {
@@ -25,12 +28,14 @@ class Upgrade {
   cost;
   bonus;
   text;
+  desc;
   game;
   upgradeButton;
-  constructor(cost: number, bonus: number, text: string, game: Game) {
+  constructor(cost: number, bonus: number, text: string, desc: string, game: Game) {
     this.cost = cost;
     this.bonus = bonus;
     this.text = text;
+    this.desc = desc;
     this.game = game;
     this.upgradeButton = new Element("button");
     this.upgradeButton.element.innerHTML =
@@ -53,6 +58,17 @@ class Upgrade {
         ", bonus: " +
         this.bonus.toFixed(2) +
         ")";
+    };
+    document.onmousemove = (event) => {
+      this.game.description.element.style.left = (event.pageX + 15) + "px";
+      this.game.description.element.style.bottom = (Number(window.innerHeight)-event.pageY - 13) + "px";
+    }
+    this.upgradeButton.element.onmouseover = () => {
+      this.game.description.element.style.display = "inline-block";
+      this.game.description.element.innerHTML = this.desc;
+    };
+    this.upgradeButton.element.onmouseout = () => {
+      this.game.description.element.style.display = "none";
     };
   }
   updatevisability() {
@@ -77,6 +93,7 @@ class Game {
   cats;
   catGrowth;
   upgradeButtons: Upgrade[] = [];
+  description;
 
   constructor() {
     document.title = this.name;
@@ -94,7 +111,7 @@ class Game {
     this.cats = new Element("div");
     this.catGrowth = new Element("div");
     this.catGrowth.element.innerHTML =
-      this.counterGrowthRate.toFixed(1) + " cats/sec";
+    this.counterGrowthRate.toFixed(1) + " cats/sec";
 
     //this.upgradeButton = new Element("button");
     //this.upgradeButton.element.innerHTML = "Upgrade (cost 10)";
@@ -102,9 +119,14 @@ class Game {
     //requestAnimationFrame(this.incrementScoreOverTime);
     for (const Item of availableItems) {
       this.upgradeButtons.push(
-        new Upgrade(Item.cost, Item.rate, Item.name, this),
+        new Upgrade(Item.cost, Item.rate, Item.name, Item.desc, this),
       );
     }
+
+    this.description = new Element("div");
+    this.description.element.innerHTML = "Testing";
+    this.description.element.style.position = "absolute";
+    this.description.element.style.display = "none";
     //this.upgradeButtons.push(new Upgrade(10, 0.1, "Milk", this));
     //this.upgradeButtons.push(new Upgrade(100, 2, "Cardboard box", this));
     //this.upgradeButtons.push(new Upgrade(1000, 50, "Catnip", this));
