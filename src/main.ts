@@ -136,9 +136,9 @@ class Game {
         { propertyPath: ["innerHTML"], value: "<span>&#128568;</span>" },
         { propertyPath: ["style", "fontSize"], value: "50px" },
         { propertyPath: ["onclick"], value: this.incrementScore },
-        { propertyPath: ["border-style"], value: 'solid' },
-        { propertyPath: ["border-color"], value: 'black' },
-        { propertyPath: ["border-width"], value: '20px' },
+        { propertyPath: ["border-style"], value: "solid" },
+        { propertyPath: ["border-color"], value: "black" },
+        { propertyPath: ["border-width"], value: "20px" },
       ]),
       cats: new Element("div"),
       catGrowth: new Element("div", [
@@ -213,12 +213,14 @@ class Game {
 
   animate = (time: number) => {
     if (this.HTMLElements.catButton instanceof Element) {
-      let loopingDecimal = ((time/(1000/Math.sqrt(Math.sqrt(this.counterGrowthRate))))%1);
-      if(loopingDecimal > 0.5){
+      let loopingDecimal =
+        (time / (1000 / Math.sqrt(Math.sqrt(this.counterGrowthRate)))) % 1;
+      if (loopingDecimal > 0.5) {
         loopingDecimal = 1 - loopingDecimal;
       }
       loopingDecimal = (loopingDecimal - 0.25) * 20;
-      this.HTMLElements.catButton.element.style.rotate = "" + loopingDecimal + "deg";
+      this.HTMLElements.catButton.element.style.rotate =
+        "" + loopingDecimal + "deg";
     }
     requestAnimationFrame(this.animate);
   };

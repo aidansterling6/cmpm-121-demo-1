@@ -55,7 +55,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-#mainButton{
+#mainButton {
   outline: 5px solid;
 }
 button:hover {
